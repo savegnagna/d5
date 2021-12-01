@@ -1,0 +1,20 @@
+{
+  "name": "d5-g32",
+  "version": "1.0.0",
+  "description": "Questo progetto è svilupatto per essere utilizato come api dell 5° deliverable di ignegneria del sofware, di universita degli studio di Trento, gruppo composto da Alessandra, Jan e Vincenzo",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js"
+  },
+  "keywords": [
+    "UNITN",
+    "G32",
+    "D5"
+  ],
+  "author": "Alessandra Jan Vincenzo",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.1"
+  }
+}

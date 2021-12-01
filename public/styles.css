@@ -1,0 +1,95 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.column {
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  flex-direction: column;
+}
+
+.form *{
+  margin-bottom: 5pt;
+}
+
+.textinput{
+  box-shadow: 3px 1px 4px 0 #00000060;
+  border-radius: 10pt;
+}
+
+#map{
+    height: 100%;
+}
+.hmenu * 
+{
+  margin-bottom: 10pt;
+  font-size: x-large;
+  background-color: chartreuse;
+  border-width: 0px;
+  padding: 5pt;
+}
+#coupons *
+{
+  margin-bottom: 10pt;
+}
+
+
+/* ! The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 24px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #131313;
+}
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  font-size: 36px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: rgba(17, 17, 17, 0);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #eee;
+}
+
+/* Style page content*/
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}

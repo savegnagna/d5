@@ -1,0 +1,42 @@
+[
+    {
+        "email": "user@gmail.com",
+        "coupons": [
+            {
+                "expire": "31/01/2022",
+                "amount": 0.15,
+                "code": "random"
+            },
+            {
+                "expire": "31/01/2022",
+                "amount": 0.20,
+                "code": "random"
+            },
+            {
+                "expire": "31/01/2022",
+                "amount": 0.05,
+                "code": "random"
+            },
+            {
+                "expire": "31/01/2022",
+                "amount": 0.10,
+                "code": "random"
+            }
+        ]
+    },
+    {
+        "email": "driver@gmail.com",
+        "coupons": [
+            {
+                "expire": "31/01/2022",
+                "amount": 0.15,
+                "code": "random"
+            },
+            {
+                "expire": "31/01/2022",
+                "amount": 0.20,
+                "code": "random"
+            }
+        ]
+    }
+]

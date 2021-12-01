@@ -1,0 +1,59 @@
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+    <script>
+        function sendForm() {
+            const email = document.getElementById('email')
+            const pass = document.getElementById('pass')
+            const hasher = new jsSHA("SHA-1", "TEXT");
+            hasher.update(pass.value);
+            payload =
+            {
+                "email": email.value,
+                "password": hasher.getHash("HEX")
+            }
+            fetch("/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                }else{
+                    response.text().then((text) => {
+                        let viewer = document.getElementById("request-status");
+                        viewer.textContent = text;
+                    });
+                }
+            })
+        }
+    </script>
+</head>
+
+<body class="column">
+    <img src="logo.jpg" alt="Imagine del sito">
+
+    <h1 id="logintext">
+        LOGIN
+    </h1>
+
+    <form action="/login" method="post" class="column form" id="loginform">
+        <input type="email" id="email" class="textinput" placeholder="email">
+
+        <div id="password">
+            <input type="password" id="pass" class="textinput" placeholder="password">
+            <a href="passwordreset" style="position: absolute; padding-left: 5pt;">reset password</a>
+        </div>
+
+        <p id="request-status"></p>
+
+        <input type="button" onclick="sendForm()" class="textinput" value="SUBMIT">
+    </form>
+
+    <a href="registrazione" style="position: absolute; bottom: 1%;">
+        <input type="button" class="textinput" value="REGISTRATI"></button>
+    </a>
+</body>

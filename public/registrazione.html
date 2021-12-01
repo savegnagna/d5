@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="velocipedimap.js"></script>
+    <script src="registrescion.js"></script>
+</head>
+
+<body class="column">
+    <h1 id="logintext">
+        REGISTRAZIONE
+    </h1>
+
+    <form id="regForm" method="post" class="column form">
+        <input type="text" class="textinput" id="name" placeholder="Name">
+        <input type="text" class="textinput" id="surname" placeholder="Surname">
+        <input type="date" class="textinput" id="birth" placeholder="Date of birth">
+        <input type="email"class="textinput"id="email" placeholder="Email">
+        <input type="text" class="textinput"id="number" placeholder="Phone number">
+        <input type="password" class="textinput" id="pass" placeholder="password">
+        <input type="password" class="textinput" id="repass" placeholder="repeat password">
+
+       <br> 
+
+        <div id="paying-method" class="column form">
+            <input type="text" class="textinput" id="nameholder" placeholder="Name Holder">
+            <input type="text" class="textinput" id="cardnumber" placeholder="Card Number">
+            <input type="number" class="textinput" id="MM" placeholder="MM">
+            <div>
+                <input type="number" class="textinput" id="AA" placeholder="AA">
+                <input type="number" class="textinput" id="CVV" placeholder="CVV">
+            </div>
+        </div>
+        
+        <br>
+
+    </form>
+    <input type="button" onclick="(submitReg())" class="textinput" value="SUBMIT">
+
+<!--
+    <div id="map"></div>
+
+    !-- use this to get a correct view key=AIzaSyCuijdTGsVE2Hl6W44WSkSdGs8IHjvSXWs --
+    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?&callback=mapGeneretor&v=weekly"
+      async
+    ></script>
+-->
+</body>
