@@ -1,15 +1,14 @@
 # For testing purpose
-1. Install require package, npm install
+1. Install required packages, npm install
 2. Run the server with npm run start
 3. The server will run on the *port __8080__* of the local machine
-4. To login use the
+4. To log in use the
     * user
       * user: user@gmail.com
       * pass: pass
     * driver
       * user: driver@gmail.com
       * pass: pass 
-
 
 # Structure
 * public
