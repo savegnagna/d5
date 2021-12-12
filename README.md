@@ -1,6 +1,6 @@
 # For testing purpose
 1. Install required packages, npm install
-2. Run the server with npm run start
+2. Run the server with npm run run
 3. The server will run on the *port __8080__* of the local machine
 4. To log in use the
     * user
