@@ -1,7 +1,7 @@
 # For testing purpose
-1. Install required packages, npm install
+1. Install required packages, using npm install, inside the extracted folder
 2. Run the server with npm run run
-3. The server will run on the *port __8080__* of the local machine
+3. The server will run on the *port __8080__* using the internal loopback (*localhost*)
 4. To log in use the
     * user
       * user: user@gmail.com
