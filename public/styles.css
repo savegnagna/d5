@@ -23,7 +23,25 @@ body {
 
 #map{
     height: 100%;
+    visibility: visible;
 }
+
+.gmnoprint{
+  z-index: 0;
+  visibility: hidden;
+}
+
+#pop_manu_vel{
+  background: rgba(255, 255, 255, 1);
+  width: 100%;
+  visibility: visible;
+}
+
+#pop_manu_vel div{
+  margin: auto;
+  text-align: center;
+}
+
 .hmenu * 
 {
   margin-bottom: 10pt;
@@ -32,11 +50,11 @@ body {
   border-width: 0px;
   padding: 5pt;
 }
+
 #coupons *
 {
   margin-bottom: 10pt;
 }
-
 
 /* ! The sidebar menu */
 .sidebar {
