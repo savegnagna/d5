@@ -44,7 +44,8 @@ function searchUser(email) {
   Main Page with testing for login status
 */
 app.get('/', (req, res) => {
-  /*for user without login cookie or not login 
+  /*
+    For user without login cookie or not login 
     it will be creted and set the cookie to false
   */
   if (req.cookies.login === undefined || req.cookies.login === 'false') {
@@ -69,6 +70,14 @@ app.get('/', (req, res) => {
   else {
     res.status(500).send("si è verificato un errore")
   }
+})
+
+/*
+  Change status to logout
+*/
+app.get('/logout', (req, res) =>{
+  res.cookie('login', 'false', { maxAge: 86400 })
+  res.sendFile('public/index.html', { root: __dirname })
 })
 
 //POST login endpoint
