@@ -5,8 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const { ok } = require('assert');
-const { json } = require('express/lib/response');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -17,9 +17,29 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //cookie parser init
 app.use(cookieParser());
 
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Library API",
+      version: "1.0.0",
+      description: "Un applicazione per il noleggio dei velocipedi elettrici e per il carsharing"
+    },
+    servers: [
+      {
+        url: "http://localhost:8080"
+      }
+    ],
+  },
+  apis: ["./index.js", "./data_structure.js", "./test.json"]
+}
+
+const specs = swaggerJsDoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
 /*
   Loading the data of the user and coupon the static file
-  ?implement a DBMS
 */
 let users;
 fs.readFile(path.join(__dirname, './data/users.json'), 'utf8', function (err, data) {
@@ -40,8 +60,23 @@ function searchUser(email) {
   return users.filter(item => item.email == email)
 }
 
-/*
-  Main Page with testing for login status
+/**
+* @swagger
+* /login:
+*   post:
+*     summary: Returns the list of all the books
+*     tags: [Login]
+*     responses:
+*       200:
+*         description: The list of the books
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/Users'
+*       400:
+*         description: The list of the books
 */
 app.get('/', (req, res) => {
   /*
@@ -75,7 +110,7 @@ app.get('/', (req, res) => {
 /*
   Change status to logout
 */
-app.get('/logout', (req, res) =>{
+app.get('/logout', (req, res) => {
   res.cookie('login', 'false', { maxAge: 86400 })
   res.redirect('./');
 })
@@ -100,7 +135,7 @@ app.post('/registrazione', (req, res) => {
   try {
     if (req.body.email == users.filter(item => item.email == req.body.email)[0].email) {
       res.status(406).send("email already present");
-    } 
+    }
   } catch (error) {
     let new_user = req.body;
     new_user.job = 'user';
