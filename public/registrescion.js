@@ -22,4 +22,12 @@ function submitReg() {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(form)
     })
+    .then(response => {
+        console.log(response.status);
+        if (response.status == 200) {
+            location.href = './'
+        } else {
+            location.href = './registrazione'
+        }
+    })
 }
