@@ -77,7 +77,7 @@ app.get('/', (req, res) => {
 */
 app.get('/logout', (req, res) =>{
   res.cookie('login', 'false', { maxAge: 86400 })
-  res.sendFile('public/index.html', { root: __dirname })
+  res.redirect('./');
 })
 
 //POST login endpoint
