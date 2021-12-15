@@ -31,7 +31,7 @@ const options = {
       }
     ],
   },
-  apis: ["./index.js", "./data_structure.js", "./test.json"]
+  apis: ["./index.js", "swagger_doc.js"]
 }
 
 const specs = swaggerJsDoc(options);
@@ -61,22 +61,19 @@ function searchUser(email) {
 }
 
 /**
-* @swagger
-* /login:
-*   post:
-*     summary: Returns the list of all the books
-*     tags: [Login]
-*     responses:
-*       200:
-*         description: The list of the books
-*         content:
-*           application/json:
-*             schema:
-*               type: array
-*               items:
-*                 $ref: '#/components/schemas/Users'
-*       400:
-*         description: The list of the books
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Verifica del acceso e ritorno della pagina home
+ *     description: Ritorna la pagina home correta del utente utilizando il cookie del email, quello del lavoro e verificando se l'utente a il cookie login impostato a true
+ *     tags: [Home]
+ *     responses:
+ *       200:
+ *         description: Ritorna la pagina home del utente in formato html
+ *       401:
+ *         desciption: Errore di login causato da un problema di cookie impostati a valori sbagliati
+ *       500:
+ *         description: Errore inaspetato dovuto a una possibile manomisione dei cookie
 */
 app.get('/', (req, res) => {
   /*
@@ -98,7 +95,7 @@ app.get('/', (req, res) => {
         break;
 
       default:
-        res.status(500).send('errore in login --- reset cookies')
+        res.status(401).send('errore in login --- reset cookies')
         break;
     }
   }
@@ -107,33 +104,66 @@ app.get('/', (req, res) => {
   }
 })
 
-/*
-  Change status to logout
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Esegue il controlo dei dati e invia i cookie
+ *     description: Controlla le credenziali del utente utilizando il json corelato e inzia i cookie a l'utente contenenete la sua email e il proprio ruolo
+ *     tags: [Acces]
+ *     responses:
+ *       200:
+ *         description: Il login ha avuto sucesso
+ *       401:
+ *         description: L'acceso è falito perché non si è verificato un riscontro con le credenziali
+ *         
+*/
+app.post('/login', (req, res) => {
+  let finder = searchUser(req.body.email)
+  if (finder[0].email === req.body.email && finder[0].password === req.body.password) {
+    //Set all cookie for login
+    res.cookie('usr', finder[0].email)
+    res.cookie('login', 'true')
+    res.cookie('job', finder[0].job)
+    res.status(200).send()
+  } else {
+    res.status(401).send("Incorect credencial")
+  }
+})
+
+/**
+ * @swagger
+ * /logout:
+ *   get:
+ *     summary: Esegue il logout
+ *     description: Viene impostato il cookie login a false, il che rende l'utente diconesso anche se continua avere i cookie di login
+ *     tags: [Acces]
+ *     responses:
+ *       200:
+ *         description: Non ci sono stati problimi l'utente viene rindirizato alla pagina di login
 */
 app.get('/logout', (req, res) => {
   res.cookie('login', 'false', { maxAge: 86400 })
   res.redirect('./');
 })
 
-//POST login endpoint
-app.post('/login', (req, res) => {
-  let finder = searchUser(req.body.email)
-  if (finder[0] === undefined) {
-    res.status(500).send("Incorect credencial")
-  } else {
-    //Set all cookie for login
-    res.cookie('usr', finder[0].email)
-    res.cookie('login', 'true')
-    res.cookie('job', finder[0].job)
-    res.status(200).send()
-  }
-})
-
-//POST registrazione endpoint
+/**
+ * @swagger
+ * /registrazione:
+ *   post:
+ *     summary: Registrazione utente
+ *     description: Regstrazione con scritura async del utente sul disco, impostando il lavoro a job
+ *     tags: [Acces]
+ *     responses:
+ *       406:
+ *         description: Email è gia presente
+ *       201:
+ *         description: Registrazione del Email avenuta con succeso
+*/
 app.post('/registrazione', (req, res) => {
   // console.log(req.body.email == users.filter(item => item.email == req.body.email)[0].email);
   try {
-    if (req.body.email == users.filter(item => item.email == req.body.email)[0].email) {
+    if (req.body.email === users.filter(item => item.email == req.body.email)[0].email) {
       res.status(406).send("email already present");
     }
   } catch (error) {
@@ -147,22 +177,39 @@ app.post('/registrazione', (req, res) => {
         console.error(err)
       }
     })
-    res.redirect('/')
+    res.redirect('/', 201)
   }
 })
 
-/*
-  GET personal coupon
-  todo test login in account
-  todo reserce spesific account
+/**
+ * @swagger
+ * /coupons:
+ *   get:
+ *     summary: Ritorno dei coupon del utente
+ *     description: Ritorno in formato application/json dei coupon associati ad un determinato account
+ *     tags: [coupon]
+ *     responses:
+ *       200:
+ *         description: Dati trovati con successo
+ *       500:
+ *         description: Nessuna istanza del email nel file il che dovrebbe essere imposibilie 
 */
-app.get('/coupons.json', (req, res) => {
+app.get('/coupons', (req, res) => {
 
   let finded = coupons.filter(item => item.email === req.cookies.usr)
-  res.send(finded[0])
+  if (finded[0] !== undefined) {
+    res.send(finded[0])
+  }
+  else{
+    res.status(500).send("Data not present, even if it should");
+  }
 });
 
-// !provisorial use of static file
+/**
+ * todo implemtentare inzio delle bici e monopatini lato server e non generati via codice
+ */
+
+// !provisorial use of static file for html satic page
 app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 
 app.listen(port, () => {

@@ -1,3 +1,7 @@
+/**
+ * todo Implemntare un migiore sistema di rindirizamento del utente, senza hardcoding
+ */
+
 function submitReg() {
     let inputs = document.getElementById("regForm").querySelectorAll(".textinput")
     form = 
@@ -24,7 +28,7 @@ function submitReg() {
     })
     .then(response => {
         console.log(response.status);
-        if (response.status == 200) {
+        if (response.status == 201) {
             location.href = './'
         } else {
             location.href = './registrazione'
