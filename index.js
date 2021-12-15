@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3000;
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const { ok } = require('assert');
+const { json } = require('express/lib/response');
 
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
@@ -42,7 +44,8 @@ function searchUser(email) {
   Main Page with testing for login status
 */
 app.get('/', (req, res) => {
-  /*for user without login cookie or not login 
+  /*
+    For user without login cookie or not login 
     it will be creted and set the cookie to false
   */
   if (req.cookies.login === undefined || req.cookies.login === 'false') {
@@ -69,6 +72,14 @@ app.get('/', (req, res) => {
   }
 })
 
+/*
+  Change status to logout
+*/
+app.get('/logout', (req, res) =>{
+  res.cookie('login', 'false', { maxAge: 86400 })
+  res.redirect('./');
+})
+
 //POST login endpoint
 app.post('/login', (req, res) => {
   let finder = searchUser(req.body.email)
@@ -85,7 +96,24 @@ app.post('/login', (req, res) => {
 
 //POST registrazione endpoint
 app.post('/registrazione', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body.email == users.filter(item => item.email == req.body.email)[0].email);
+  try {
+    if (req.body.email == users.filter(item => item.email == req.body.email)[0].email) {
+      res.status(406).send("email already present");
+    } 
+  } catch (error) {
+    let new_user = req.body;
+    new_user.job = 'user';
+
+    users.push(new_user);
+
+    fs.writeFile(path.join(__dirname, './data/users.json'), JSON.stringify(users), err => {
+      if (err) {
+        console.error(err)
+      }
+    })
+    res.redirect('/')
+  }
 })
 
 /*

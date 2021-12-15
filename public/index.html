@@ -1,59 +1,41 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
-    <script>
-        function sendForm() {
-            const email = document.getElementById('email')
-            const pass = document.getElementById('pass')
-            const hasher = new jsSHA("SHA-1", "TEXT");
-            hasher.update(pass.value);
-            payload =
-            {
-                "email": email.value,
-                "password": hasher.getHash("HEX")
-            }
-            fetch("/login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }, 
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                }else{
-                    response.text().then((text) => {
-                        let viewer = document.getElementById("request-status");
-                        viewer.textContent = text;
-                    });
-                }
-            })
-        }
-    </script>
+    <script src="js/index.js"></script>
 </head>
 
-<body class="column">
-    <img src="logo.jpg" alt="Imagine del sito">
+<body>
+    <div class="column" >
+        <img class="logo" src="images/logo.jpg" alt="Imagine del sito" style="margin-top: 5px;">
+    
+        <h1> LOGIN </h1>
 
-    <h1 id="logintext">
-        LOGIN
-    </h1>
+        <form action="/login" method="post">
 
-    <form action="/login" method="post" class="column form" id="loginform">
-        <input type="email" id="email" class="textinput" placeholder="email">
+            <div style="display: flex; justify-content: center; padding-top: 70px;">
+                <div class="icon">
+                    <img class="iconx" src="images/email.png" alt="mail">
+                </div>
+                <div><input class="textinput" type="email" id="mail" placeholder="Email" required></div>
+            </div>
+            <br>
+            <div style="display: flex; justify-content: center;">
+                <div class="icon"><img class="iconx" src="images/asterisk.png" alt="mail"></div>
+                
+                <div><input class="textinput" type="password" id="pass" placeholder="Password" required></div>
+            </div>
+            
+            <div style="display: flex; justify-content: left; padding-left: 2cm; padding-top: 5px;">
+                <a href="recuperopassword" style="font-size: 13px;">Reset password</a>
+            </div>
 
-        <div id="password">
-            <input type="password" id="pass" class="textinput" placeholder="password">
-            <a href="passwordreset" style="position: absolute; padding-left: 5pt;">reset password</a>
-        </div>
+            <p id="request-status"></p>
 
-        <p id="request-status"></p>
+            <input type="button" onclick="sendForm()" class="buttons" value="SUBMIT">
+            
 
-        <input type="button" onclick="sendForm()" class="textinput" value="SUBMIT">
-    </form>
-
-    <a href="registrazione" style="position: absolute; bottom: 1%;">
-        <input type="button" class="textinput" value="REGISTRATI"></button>
-    </a>
+            <input type="button" class="buttons" value="REGISTRAZIONE" style="margin-top: 100px;" onclick="location.href = '/registrazione'"></button>
+        </form>
+    </div>
 </body>

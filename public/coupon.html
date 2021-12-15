@@ -1,33 +1,38 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="sidebar.js"></script>
-    <script src="couponloader.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/couponloader.js"></script>
 </head>
 
-<body class="column">
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/">Home</a>
-        <a href="setting">Setting</a>
-        <a href="coupon">Coupon</a>
-    </div>
+<body>
+    <div class="column">
+        <div>
+            <div>
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="/">Home</a>
+                    <a href="setting">Setting</a>
+                    <a href="coupon">Coupon</a>
+                    <a href="logout" style="margin-top: 400px;">Logout</a>
+                </div>
 
-    <button class="openbtn" onclick="openNav()" style="position: absolute; top: 0; left: 0;">&#9776;</button>
-
-    <div id="main">
-        <img src="logo.jpg" alt="Immagine del sito">
-
-        <br>
-
-        <div id="coupons" class="column" style="border-style: solid;">
-
-        </div>
+                <button class="openbtn" onclick="openNav()">&#9776;</button>
+            </div>
+            <div>
+                <img class="logo" src="images/logo.jpg" alt="Imagine del sito">
+                <h1> VOUCHERS</h1>
+                <br>
+                <div style="width:85%; position: relative; left: 27px; text-align: center;">
+                    <div id="coupons"></div>
+                </div>
+            </div>
+        </div>  
     </div>
 </body>
 
-
 <template id="couponview">
-    <div id="coupon" class="column">
+    <div id="coupon">
         <p id="deadline"></p>
         <label id="code">Code: hbgkdslfbg8473yhyhb</label>
     </div>

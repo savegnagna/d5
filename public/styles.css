@@ -1,73 +1,146 @@
 html,
 body {
-  height: 100%;
-  margin: 0;
+  margin: 25;
   padding: 0;
-}
-
-.column {
   display: flex;
   align-items: center;
   justify-content: top;
   flex-direction: column;
+  background-color: rgb(169, 232, 156);
 }
 
-.form *{
-  margin-bottom: 5pt;
+/* Style page content*/
+
+h1 {
+  color: rgb(0, 114, 0);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.logo {
+  padding-top: 30px;
+  width: 100px; 
+  height: 70px;
+  margin-top: -20px;
+}
+
+.icon {
+  background-color: rgb(224, 224, 224);
+  border-radius: 5px 0 0 5px;
+  border: 1px  solid rgb(173, 173, 173);
+}
+
+.iconx {
+  width: 17px; 
+  height: 17px;
+  align-items: center;
+  padding: 7px;
+}
+
+.column {
+  text-align: center;
+  width: 360px; 
+  height: 700px; 
+  background-color: white; 
+  border-radius: 20px;
+  margin-top: 50px;
 }
 
 .textinput{
-  box-shadow: 3px 1px 4px 0 #00000060;
-  border-radius: 10pt;
+  border: 1px solid rgb(173, 173, 173);
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+}
+
+.card{
+  border: 1px solid rgb(173, 173, 173);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buttons {
+  background-color: rgb(12, 173, 12);
+  border: 1px solid rgb(12, 173, 12);
+  padding: 15px 30px;
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.qrcode {
+  background-color: rgb(0, 114, 0);
+  border: 2px  solid green;
+  border-radius: 90px;
+}
+
+.callbtn {
+  background-color: rgb(0, 114, 0);
+  border: 2px  solid green;
+  border-radius: 5px;
+  padding: 0 20px;
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
+  margin-left: -20px;
+}
+
+.sidecolumn {
+  text-align: center;
+  width: 360; 
+  height: 700; 
+  background-color: white; 
+  border-radius: 20px;
 }
 
 #map{
-    height: 100%;
-    visibility: visible;
+  border-radius: 20px;
+  height: 100%;
+  visibility: visible;
 }
 
 .gmnoprint{
-  z-index: 0;
+  z-index: 1;
   visibility: hidden;
+  position: fixed;
 }
 
 #pop_manu_vel{
-  background: rgba(255, 255, 255, 1);
   width: 100%;
   visibility: visible;
 }
 
 #pop_manu_vel div{
-  margin: auto;
+  margin: -100px;
   text-align: center;
 }
 
-.hmenu * 
-{
-  margin-bottom: 10pt;
-  font-size: x-large;
-  background-color: chartreuse;
-  border-width: 0px;
-  padding: 5pt;
-}
+.backbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    color: black;
+    border: none;
+    position: relative; 
+    top: 45px; 
+    left: -150px;
+  }
 
-#coupons *
-{
-  margin-bottom: 10pt;
-}
 
 /* ! The sidebar menu */
 .sidebar {
-  height: 100%; /* 100% Full-height */
+  height: 640px; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: rgb(255, 255, 255); /* Black*/
+
+  background-color: rgb(0, 114, 0);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  border-radius: 20px 10px 10px 20px;
 }
 
 /* The sidebar links */
@@ -75,8 +148,9 @@ body {
   padding: 8px 8px 8px 24px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
-  display: block;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
   transition: 0.3s;
 }
 
@@ -86,8 +160,8 @@ body {
 }
 /* Position and style the close button (top right corner) */
 .sidebar .closebtn {
-  position: absolute;
-  top: 0;
+  position: absolute; 
+  top: 30px; 
   left: 0px;
   font-size: 36px;
 }
@@ -96,18 +170,49 @@ body {
 .openbtn {
   font-size: 20px;
   cursor: pointer;
-  background-color: rgba(17, 17, 17, 0);
+  background-color: transparent;
   color: black;
-  padding: 10px 15px;
   border: none;
+  position: relative; 
+  top: 45px; 
+  left: -150px;
 }
 
 .openbtn:hover {
   background-color: #eee;
 }
 
-/* Style page content*/
-#main {
-  transition: margin-left .5s; /* If you want a transition effect */
-  padding: 20px;
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+#coupons {
+  padding: auto;
+  background-color: rgb(224, 224, 224); 
+  border: 3px  solid green; 
+  border-bottom: 0px;
+}
+
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:650px;
+  margin-top:25px;
+  margin-left: 0px;
+  overflow:auto; 
+}
+#table-wrapper table {
+  width:100%;   
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator, input[type="month"]::-webkit-calendar-picker-indicator {
+  width: 30px;
+  filter: invert(60%) sepia(30%) saturate(0%) hue-rotate(203deg) brightness(90%) contrast(95%);
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover, input[type="month"]::-webkit-calendar-picker-indicator:hover {
+  filter: invert(60%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.8);
 }
