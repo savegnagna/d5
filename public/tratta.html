@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="UTF-32">
+	<meta http-equiv="X-UA-Compatible" content="IE=chrome">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/trattamap.js"></script>
+	<title>Noleggio</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="column">
+		<div>
+			<div>
+				<button onclick="history.back()" class="backbtn"><strong>&#8592</strong></button>
+			</div>
+			<div>
+				<img class="logo" src="images/logo.jpg" alt="Imagine del sito">
+            	<br>
+				<form>
+					<input type="text" placeholder="Partenza" style="width: 80%; margin: 5px;" required>
+					<br>
+					<input type="text" placeholder="Arrivo" style="width: 80%; margin: 5px;" required>
+					<br>
+					Ora:
+					<input type="time" placeholder="hh" style="width: 70px; margin: 5px;" required>
+					<select name="cars" id="cars">
+						<option selected disabled>Auto</option>
+						<option value="volvo">Green</option>
+						<option value="mercedes">Normale</option>
+					</select>
+					<br>
+					<input type="button" class="buttons" value="SUBMIT" style="font-size: 20px; margin: 10px;" onclick="prenota()">
+				</form>
+			</div>
+		</div>
+		<div id="map" style="position:relative; height: 61%; border-radius: 0 0 20px 20px;">
+			<script
+				src="https://maps.googleapis.com/maps/api/js?keys=AIzaSyCuijdTGsVE2Hl6W44WSkSdGs8IHjvSXW&callback=mapGeneretor&v=weekly"
+				async></script>
+		</div>
+    </div>
+</body>
+</html>

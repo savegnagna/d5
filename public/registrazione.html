@@ -1,38 +1,111 @@
 <!DOCTYPE html>
-
 <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="registrescion.js"></script>
+    <script src="js/registrazione.js"></script>
 </head>
 
-<body class="column">
-    <h1 id="logintext">
-        REGISTRAZIONE
-    </h1>
-
-    <form id="regForm" method="post" class="column form">
-        <input type="text" class="textinput" id="name" placeholder="Name">
-        <input type="text" class="textinput" id="surname" placeholder="Surname">
-        <input type="date" class="textinput" id="birth" placeholder="Date of birth">
-        <input type="email"class="textinput"id="email" placeholder="Email">
-        <input type="text" class="textinput"id="number" placeholder="Phone number">
-        <input type="password" class="textinput" id="pass" placeholder="password">
-        <input type="password" class="textinput" id="repass" placeholder="repeat password">
-
-       <br> 
-
-        <div id="paying-method" class="column form">
-            <input type="text" class="textinput" id="nameholder" placeholder="Name Holder">
-            <input type="text" class="textinput" id="cardnumber" placeholder="Card Number">
-            <input type="number" class="textinput" id="MM" placeholder="MM">
-            <div>
-                <input type="number" class="textinput" id="AA" placeholder="AA">
-                <input type="number" class="textinput" id="CVV" placeholder="CVV">
+<body>
+    <div class="column">
+        <div id="table-wrapper">
+            <div id="table-scroll">
+                <table>
+                    <tbody>
+                        <div>
+                            <img class="logo" src="images/logo.jpg" alt="Imagine del sito" style="margin-left: 16px;">
+                            <h1> REGISTRAZIONE</h1>
+                            <form id="regForm" method="post">
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/user.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="text" class="textinput" id="name" placeholder="Name">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/user.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="text" class="textinput" id="surname" placeholder="Surname">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/birthday.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="date" class="textinput" style="padding: 8px 15px;" id="birth" placeholder="Date of birth;">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/email.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="email"class="textinput" id="mail" placeholder="Email">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/phone.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="text" style="border: 1px solid rgb(173, 173, 173); width: 34px; padding: 10px 0; padding-left: 10px;" id="numberid" placeholder="+39">
+                                        <input type="number" class="textinput" style="width: 116px; margin-left: -4px;" id="number" placeholder="Phone number">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/asterisk.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="password" class="textinput" id="pass" placeholder="password">
+                                    </div>
+                                </div>
+                                <br>
+                                <div style="display: flex; justify-content: center;">
+                                    <div class="icon">
+                                        <img class="iconx" src="images/asterisk.png" alt="mail">
+                                    </div>
+                                    <div>
+                                        <input type="password" class="textinput" id="repass" placeholder="repeat password">
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <div id="card" >
+                                        <div style="border: 1px solid rgb(173, 173, 173); background-color: rgb(224, 224, 224); width: 70%; margin-left: 40px; padding: 15px; border-radius: 5px 5px 0 0;">                            
+                                            <div style="text-align: left;">
+                                                <input type="radio" name="rad" onclick="getform()" checked>
+                                                <label>Credit or debit card</label>
+                                            </div>
+                                        </div>
+                                        <script>getform()</script>
+                                    </div>
+                                    <div style="border: 1px solid rgb(173, 173, 173); background-color: rgb(224, 224, 224); width: 70%; margin-left: 40px; padding: 15px; border-radius: 0 0 5px 5px;">
+                                        <div style="text-align: left;">
+                                            <input type="radio" name="rad" onclick="remform()">
+                                            <label>Paypal</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" class="buttons" onclick="(submitReg())"  value="SUBMIT">
+                            </form>
+                        </div>
+                    </tbody>
+                </table>
             </div>
         </div>
-        
-        <br>
-
-    </form>
-    <input type="button" onclick="(submitReg())" class="textinput" value="SUBMIT">
+    </div>
+        <div>
+            <div>
+				<button onclick="history.back()" class="backbtn" style="top: -650px"><strong>&#8592</strong></button>
+			</div>
+    </div>
 </body>

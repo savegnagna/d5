@@ -1,30 +1,36 @@
+<!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="sidebar.js"></script>
+    <script src="js/sidebar.js"></script>
 </head>
 
-<body class="column">
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/">Home</a>
-        <a href="setting">Setting</a>
-        <a href="coupon">Coupon</a>
-    </div>
+<body>
+    <div class="column">
+        <div>
+            <div>
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="/">Home</a>
+                    <a href="setting">Setting</a>
+                    <a href="coupon">Coupon</a>
+                    <a href="logout" style="margin-top: 400px;">Logout</a>
+                </div>
 
-    <button class="openbtn" onclick="openNav()" style="position: absolute; top: 0; left: 0;">&#9776;</button>
-
-    <div id="main">
-        <img src="logo.jpg" alt="Imagine del sito">
-
-        <br>
-
-        <div id="hcliente" class="column hmenu">
-            <a href="noleggio">
-                <input type="button" value="NOLEGGIO" style="cursor: pointer;">
-            </a>
-            <a href="tratta">
-                <input type="button" value="TRATTA" style="cursor: pointer;">
-            </a>
-        </div>
+                <button class="openbtn" onclick="openNav()">&#9776;</button>
+            </div>
+            <div>
+                <img class="logo" src="images/logo.jpg" alt="Imagine del sito" style="margin-bottom: 80px;">
+                <br>
+                <div id="hcliente">
+                    <a href="noleggio">
+                        <input type="button" value="NOLEGGIO" style="cursor: pointer;" class="buttons">
+                    </a>
+                    <br>
+                    <a href="tratta">
+                        <input type="button" value="TRATTA" style="cursor: pointer;" class="buttons">
+                    </a>
+                </div>
+            </div>
+        </div>  
     </div>
 </body>

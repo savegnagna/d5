@@ -5,22 +5,22 @@
             {
                 "expire": "31/01/2022",
                 "amount": 0.15,
-                "code": "random"
+                "code": "ALE99"
             },
             {
                 "expire": "31/01/2022",
                 "amount": 0.20,
-                "code": "random"
+                "code": "JAN01"
             },
             {
                 "expire": "31/01/2022",
                 "amount": 0.05,
-                "code": "random"
+                "code": "VIN01"
             },
             {
                 "expire": "31/01/2022",
                 "amount": 0.10,
-                "code": "random"
+                "code": "G32D5"
             }
         ]
     },
@@ -30,12 +30,12 @@
             {
                 "expire": "31/01/2022",
                 "amount": 0.15,
-                "code": "random"
+                "code": "A1B2C"
             },
             {
                 "expire": "31/01/2022",
                 "amount": 0.20,
-                "code": "random"
+                "code": "X9Y0Z"
             }
         ]
     }
