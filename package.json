@@ -1,10 +1,11 @@
 {
   "name": "d5-g32",
   "version": "1.0.0",
-  "description": "Questo progetto è svilupatto per essere utilizato come api dell 5° deliverable di ignegneria del sofware, di universita degli studio di Trento, gruppo composto da Alessandra, Jan e Vincenzo",
+  "description": "Questo progetto è svilupatto per essere utilizato come api dell 5° deliverable di ignegneria del software, dell'universita degli studio di Trento, gruppo composto da Alessandra, Jan e Vincenzo",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js"
+    "start": "node index.js",
+    "test": "mocha test"
   },
   "keywords": [
     "UNITN",
@@ -15,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "geolocation-marker": "^2.0.5",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.2.0"

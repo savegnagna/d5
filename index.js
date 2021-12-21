@@ -64,16 +64,16 @@ function searchUser(email) {
  * @swagger
  * /:
  *   get:
- *     summary: Verifica del acceso e ritorno della pagina home
- *     description: Ritorna la pagina home correta del utente utilizando il cookie del email, quello del lavoro e verificando se l'utente a il cookie login impostato a true
+ *     summary: Verifica di accesso e ritorno della homepage
+ *     description: Ritorna la homepage correta del utente utilizando il cookie della email, quello del ruolo e verificando se l'utente ha il cookie login impostato a true
  *     tags: [Home]
  *     responses:
  *       200:
- *         description: Ritorna la pagina home del utente in formato html
+ *         description: Ritorna la homepage del utente in formato html
  *       401:
  *         desciption: Errore di login causato da un problema di cookie impostati a valori sbagliati
  *       500:
- *         description: Errore inaspetato dovuto a una possibile manomisione dei cookie
+ *         description: Errore inaspettato dovuto a una possibile manomissione dei cookies
 */
 app.get('/', (req, res) => {
   /*
@@ -108,14 +108,14 @@ app.get('/', (req, res) => {
  * @swagger
  * /login:
  *   post:
- *     summary: Esegue il controlo dei dati e invia i cookie
- *     description: Controlla le credenziali del utente utilizando il json corelato e inzia i cookie a l'utente contenenete la sua email e il proprio ruolo
- *     tags: [Acces]
+ *     summary: Esegue il controlo dei dati e invia i cookies
+ *     description: Controlla le credenziali del utente utilizando il json correlato e invia i cookies all'utente contenenete la sua email e il proprio ruolo
+ *     tags: [Access]
  *     responses:
  *       200:
  *         description: Il login ha avuto sucesso
  *       401:
- *         description: L'acceso è falito perché non si è verificato un riscontro con le credenziali
+ *         description: L'acceso è fallito perché non si è verificato un riscontro con le credenziali
  *         
 */
 app.post('/login', (req, res) => {
@@ -136,15 +136,15 @@ app.post('/login', (req, res) => {
  * /logout:
  *   get:
  *     summary: Esegue il logout
- *     description: Viene impostato il cookie login a false, il che rende l'utente diconesso anche se continua avere i cookie di login
- *     tags: [Acces]
+ *     description: Viene impostato il cookie login a false, il che rende l'utente disconnesso anche se continua avere i cookies di login
+ *     tags: [Access]
  *     responses:
  *       200:
- *         description: Non ci sono stati problimi l'utente viene rindirizato alla pagina di login
+ *         description: Non ci sono stati problimi, l'utente viene rindirizato alla pagina di login
 */
 app.get('/logout', (req, res) => {
   res.cookie('login', 'false', { maxAge: 86400 })
-  res.redirect('./');
+  res.redirect('./', 200);
 })
 
 /**
@@ -152,13 +152,13 @@ app.get('/logout', (req, res) => {
  * /registrazione:
  *   post:
  *     summary: Registrazione utente
- *     description: Regstrazione con scritura async del utente sul disco, impostando il lavoro a job
- *     tags: [Acces]
+ *     description: Registrazione con scrittura async del utente sul disco, impostando il ruolo a job
+ *     tags: [Access]
  *     responses:
+ *       201:
+ *         description: Registrazione avvenuta con successo
  *       406:
  *         description: Email è gia presente
- *       201:
- *         description: Registrazione del Email avenuta con succeso
 */
 app.post('/registrazione', (req, res) => {
   // console.log(req.body.email == users.filter(item => item.email == req.body.email)[0].email);
@@ -185,14 +185,14 @@ app.post('/registrazione', (req, res) => {
  * @swagger
  * /coupons:
  *   get:
- *     summary: Ritorno dei coupon del utente
+ *     summary: Ritorno dei coupon dell'utente
  *     description: Ritorno in formato application/json dei coupon associati ad un determinato account
  *     tags: [coupon]
  *     responses:
  *       200:
  *         description: Dati trovati con successo
  *       500:
- *         description: Nessuna istanza del email nel file il che dovrebbe essere imposibilie 
+ *         description: Nessuna istanza dell'email nel file, il che dovrebbe essere imposibilie 
 */
 app.get('/coupons', (req, res) => {
 
@@ -213,5 +213,5 @@ app.get('/coupons', (req, res) => {
 app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`App listening at http://localhost:${port}`)
 })

@@ -23,46 +23,43 @@
  *      properties:
  *        name:
  *          type: string
- *          descroption: Nome
+ *          description: Nome
  *        surname:
  *          type: string
- *          descroption: Cognome
+ *          description: Cognome
  *        birth:
- *          type: string
- *          descroption: Data di nascita
+ *          type: date
+ *          description: Data di nascita
  *        email:
  *          type: string
- *          descroption: Email per il login
+ *          description: Email per il login
  *        number:
  *          type: number
- *          descroption: Numero di telefono
+ *          description: Numero di telefono
  *        password:
  *          type: string
- *          descroption: Password del utente
+ *          description: Password del utente
  *        payment: 
  *          type: object
  *          properties:
  *            holder:
  *              type: string
- *              descroption: Nome del possesore della carta
+ *              description: Nome del possesore della carta
  *            card_number:
  *              type: number
- *              descroption: Numero della carta di credito presente sulla parte frontale
- *            MM:
- *              type: number
- *              descroption: Mese di scadenza delle carte di debito o di debito
- *            AA:
- *              type: number
- *              descroption: Anno di scadenza delle carte di debito o di debito
+ *              description: Numero della carta di credito presente sulla parte frontale
+ *            MM/AAAA:
+ *              type: month
+ *              description: Mese e anno di scadenza della carta di debito o di debito
  *            CVV:
  *              type: number
- *              descroption: Codice di sicurezza presente sulle carte di debito o di credito
+ *              description: Codice di sicurezza presente sulla carta di debito o di credito
  *        
- *        job:
+ *    Job:
  *          type: string
- *          descroption: Ruolo del utente al interno del applicazione
+ *          description: Ruolo del utente al interno del applicazione
  * 
- *    coupon:
+ *    Coupon:
  *      type: object
  *      require:
  *        - email
@@ -73,7 +70,7 @@
  *      properties:
  *        email:
  *          type: string
- *          descroption: asd
+ *          description: asd
  *        coupons:
  *          type: array
  *          items:
@@ -81,13 +78,13 @@
  *            properties:
  *              expire:
  *                type: string
- *                descroption: asd
+ *                description: asd
  *              amount:
  *                type: number
- *                descroption: asd
+ *                description: asd
  *              code:
  *                type: number
- *                descroption: asd
+ *                description: asd
  */
 
 

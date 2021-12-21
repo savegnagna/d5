@@ -1,4 +1,4 @@
-fetch('coupons.json')
+fetch('/coupons')
   .then(response => response.json())
   .then(data => loader(data))
   .catch((err) => errorHeandler(err));

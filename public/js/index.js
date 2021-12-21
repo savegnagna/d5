@@ -1,12 +1,10 @@
 function sendForm() {
     const email = document.getElementById('mail')
     const pass = document.getElementById('pass')
-    const hasher = new jsSHA("SHA-1", "TEXT");
-    hasher.update(pass.value);
     payload =
     {
         "email": email.value,
-        "password": hasher.getHash("HEX")
+        "password": pass.value,
     }
     fetch("/login", {
         method: 'POST',
