@@ -6,16 +6,17 @@ const http = require('http')
 let assert = require('assert');
 
 
-describe('Login', function () {
+describe('Ndovat', function () {
     describe('Login', function () {
         let cookie;
-        it('Al primo acceso i cookie login impostato su false', function () {
+        it('Al primo accesso il cookie login è impostato su false', function () {
             const options = {
                 hostname: 'localhost',
-                port: 8080,
+                port: 3200,
                 path: '/',
             }
             http.get(options, res => {
+                //console.log(res);
                 cookie = res.headers['set-cookie'];
                 assert.strictEqual(cookie[0].split(';')[0], "login=false");
             });
@@ -27,7 +28,7 @@ describe('Login', function () {
             });
             const options = {
                 hostname: 'localhost',
-                port: 8080,
+                port: 3200,
                 path: '/login',
                 method: 'POST',
                 headers: {
@@ -47,10 +48,10 @@ describe('Login', function () {
         });
     });
     describe('Logout', function () {
-        it('Eseguie il logout', function () {
+        it('Esegue il logout', function () {
             const options = {
                 hostname: 'localhost',
-                port: 8080,
+                port: 3200,
                 path: '/logout',
             };
             http.get(options, res => {
@@ -59,7 +60,7 @@ describe('Login', function () {
             })
         });
     });
-    describe('Registrescion', function () {
+    describe('Registration', function () {
         const postData = JSON.stringify(
             {
                 "name": "TEST",
@@ -77,10 +78,10 @@ describe('Login', function () {
                     "CVV": "321"
                 }
             });
-        it('Coretto invio dei dati', function () {
+        it('Corretto invio dei dati', function () {
             const options = {
                 hostname: 'localhost',
-                port: 8080,
+                port: 3200,
                 path: '/registrazione',
                 method: 'POST',
                 headers: {
