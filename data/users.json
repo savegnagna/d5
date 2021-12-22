@@ -1,12 +1,12 @@
 [
-    {
-        "email": "user@gmail.com",
-        "password": "pass",
-        "job": "user"
-    },
-    {
-        "email": "driver@gmail.com",
-        "password": "pass",
-        "job": "driver"
-    }
+  {
+    "email": "user@gmail.com",
+    "password": "pass",
+    "job": "user"
+  },
+  {
+    "email": "driver@gmail.com",
+    "password": "pass",
+    "job": "driver"
+  }
 ]

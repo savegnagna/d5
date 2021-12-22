@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+exports.app = app;
+
 const port = 8080;
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -11,27 +13,27 @@ const swaggerJsDoc = require('swagger-jsdoc');
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
+    extended: true
 }));
 
 //cookie parser init
 app.use(cookieParser());
 
 const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Library API",
-      version: "1.0.0",
-      description: "Un applicazione per il noleggio dei velocipedi elettrici e per il carsharing"
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Library API",
+            version: "1.0.0",
+            description: "Un applicazione per il noleggio dei velocipedi elettrici e per il carsharing"
+        },
+        servers: [
+            {
+                url: "http://localhost:8080"
+            }
+        ],
     },
-    servers: [
-      {
-        url: "http://localhost:8080"
-      }
-    ],
-  },
-  apis: ["./index.js", "swagger_doc.js"]
+    apis: ["./index.js", "swagger_doc.js"]
 }
 
 const specs = swaggerJsDoc(options);
@@ -41,24 +43,20 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 /*
   Loading the data of the user and coupon the static file
 */
-let users;
-fs.readFile(path.join(__dirname, './data/users.json'), 'utf8', function (err, data) {
-  if (err) throw err;
-  users = JSON.parse(data);
-});
+let users = JSON.parse(fs.readFileSync(path.join(__dirname, './data/users.json'), 'utf8'));
+exports.users = users;
 
-let coupons;
-fs.readFile(path.join(__dirname, './data/coupons.json'), 'utf8', function (err, data) {
-  if (err) throw err;
-  coupons = JSON.parse(data);
-});
+let coupons = JSON.parse(fs.readFileSync(path.join(__dirname, './data/coupons.json'), 'utf8'));
+exports.coupons = coupons;
+
 
 /*
   Search for the user by email
 */
 function searchUser(email) {
-  return users.filter(item => item.email == email)
+    return users.filter(item => item.email == email)
 }
+exports.searchUser = searchUser;
 
 /**
  * @swagger
@@ -76,32 +74,32 @@ function searchUser(email) {
  *         description: Errore inaspettato dovuto a una possibile manomissione dei cookies
 */
 app.get('/', (req, res) => {
-  /*
-    For user without login cookie or not login 
-    it will be creted and set the cookie to false
-  */
-  if (req.cookies.login === undefined || req.cookies.login === 'false') {
-    res.cookie('login', 'false', { maxAge: 86400 })
-    res.sendFile('public/index.html', { root: __dirname })
-  }
-  // return page based on the user cookies
-  else if (req.cookies.login === 'true') {
-    switch (req.cookies.job) {
-      case 'driver':
-        res.sendFile('public/homeautista.html', { root: __dirname })
-        break;
-      case 'user':
-        res.sendFile('public/homecliente.html', { root: __dirname })
-        break;
-
-      default:
-        res.status(401).send('errore in login --- reset cookies')
-        break;
+    /*
+      For user without login cookie or not login 
+      it will be creted and set the cookie to false
+    */
+    if (req.cookies.login === undefined || req.cookies.login === 'false') {
+        res.cookie('login', 'false', { maxAge: 86400 })
+        res.sendFile('public/index.html', { root: __dirname })
     }
-  }
-  else {
-    res.status(500).send("si è verificato un errore")
-  }
+    // return page based on the user cookies
+    else if (req.cookies.login === 'true') {
+        switch (req.cookies.job) {
+            case 'driver':
+                res.sendFile('public/homeautista.html', { root: __dirname })
+                break;
+            case 'user':
+                res.sendFile('public/homecliente.html', { root: __dirname })
+                break;
+
+            default:
+                res.status(401).send('errore in login --- reset cookies')
+                break;
+        }
+    }
+    else {
+        res.status(500).send("si è verificato un errore")
+    }
 })
 
 /**
@@ -119,16 +117,16 @@ app.get('/', (req, res) => {
  *         
 */
 app.post('/login', (req, res) => {
-  let finder = searchUser(req.body.email)
-  if (finder[0].email === req.body.email && finder[0].password === req.body.password) {
-    //Set all cookie for login
-    res.cookie('usr', finder[0].email)
-    res.cookie('login', 'true')
-    res.cookie('job', finder[0].job)
-    res.status(200).send()
-  } else {
-    res.status(401).send("Incorect credencial")
-  }
+    let finder = searchUser(req.body.email)
+    if (finder[0].email === req.body.email && finder[0].password === req.body.password) {
+        //Set all cookie for login
+        res.cookie('usr', finder[0].email)
+        res.cookie('login', 'true')
+        res.cookie('job', finder[0].job)
+        res.status(200).send()
+    } else {
+        res.status(401).send("Incorect credencial")
+    }
 })
 
 /**
@@ -143,8 +141,8 @@ app.post('/login', (req, res) => {
  *         description: Non ci sono stati problimi, l'utente viene rindirizato alla pagina di login
 */
 app.get('/logout', (req, res) => {
-  res.cookie('login', 'false', { maxAge: 86400 })
-  res.redirect('./', 200);
+    res.cookie('login', 'false', { maxAge: 86400 })
+    res.redirect(200, './');
 })
 
 /**
@@ -161,24 +159,25 @@ app.get('/logout', (req, res) => {
  *         description: Email è gia presente
 */
 app.post('/registrazione', (req, res) => {
-  // console.log(req.body.email == users.filter(item => item.email == req.body.email)[0].email);
-  try {
-    if (req.body.email === users.filter(item => item.email == req.body.email)[0].email) {
-      res.status(406).send("email already present");
+    // console.log(req.body.email == users.filter(item => item.email == req.body.email)[0].email);
+    try {
+        if (req.body.email === users.filter(item => item.email == req.body.email)[0].email) {
+            res.status(406).send("email already present");
+        }
+    } catch (error) {
+        let new_user = req.body;
+        new_user.job = 'user';
+
+        users.push(new_user);
+        if (new_user.email !== "TEST@gmail.com") {
+            fs.writeFile(path.join(__dirname, './data/users.json'), JSON.stringify(users), err => {
+                if (err) {
+                    console.error(err)
+                }
+            })
+        }
+        res.redirect(201, '/')
     }
-  } catch (error) {
-    let new_user = req.body;
-    new_user.job = 'user';
-
-    users.push(new_user);
-
-    fs.writeFile(path.join(__dirname, './data/users.json'), JSON.stringify(users), err => {
-      if (err) {
-        console.error(err)
-      }
-    })
-    res.redirect('/', 201)
-  }
 })
 
 /**
@@ -196,13 +195,13 @@ app.post('/registrazione', (req, res) => {
 */
 app.get('/coupons', (req, res) => {
 
-  let finded = coupons.filter(item => item.email === req.cookies.usr)
-  if (finded[0] !== undefined) {
-    res.send(finded[0])
-  }
-  else{
-    res.status(500).send("Data not present, even if it should");
-  }
+    let finded = coupons.filter(item => item.email === req.cookies.usr)
+    if (finded[0] !== undefined) {
+        res.send(finded[0])
+    }
+    else {
+        res.status(500).send("Data not present, even if it should");
+    }
 });
 
 /**
@@ -212,6 +211,8 @@ app.get('/coupons', (req, res) => {
 // !provisorial use of static file for html satic page
 app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
+const server = app.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`)
 })
+
+exports.server = server;
