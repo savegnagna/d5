@@ -19,6 +19,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //cookie parser init
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store')
+    next()
+})
+
 const options = {
     definition: {
         openapi: "3.0.0",
@@ -137,12 +142,12 @@ app.post('/login', (req, res) => {
  *     description: Viene impostato il cookie login a false, il che rende l'utente disconnesso anche se continua avere i cookies di login
  *     tags: [Access]
  *     responses:
- *       301:
- *         description: Non ci sono stati problimi, l'utente viene rindirizato alla pagina di login
+ *       302:
+ *         description: Reseta il cookie e ridirige alla home
 */
 app.get('/logout', (req, res) => {
     res.cookie('login', 'false', { maxAge: 86400 })
-    res.redirect(301, '/');
+    res.redirect(302, "/")
 })
 
 /**
