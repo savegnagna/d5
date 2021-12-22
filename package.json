@@ -17,11 +17,11 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
-    "geolocation-marker": "^2.0.5",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.2.0"
+    "geolocation-marker": "^2.0.5"
   },
   "devDependencies": {
-    "mocha": "^9.1.3"
+    "mocha": "^9.1.3",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.2.0"
   }
 }

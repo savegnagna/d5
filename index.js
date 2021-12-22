@@ -143,7 +143,7 @@ app.post('/login', (req, res) => {
  *     tags: [Access]
  *     responses:
  *       302:
- *         description: Reseta il cookie e ridirige alla home
+ *         description: Non ci sono stati problimi, l'utente viene rindirizato alla pagina di login
 */
 app.get('/logout', (req, res) => {
     res.cookie('login', 'false', { maxAge: 86400 })
