@@ -137,12 +137,12 @@ app.post('/login', (req, res) => {
  *     description: Viene impostato il cookie login a false, il che rende l'utente disconnesso anche se continua avere i cookies di login
  *     tags: [Access]
  *     responses:
- *       200:
+ *       301:
  *         description: Non ci sono stati problimi, l'utente viene rindirizato alla pagina di login
 */
 app.get('/logout', (req, res) => {
     res.cookie('login', 'false', { maxAge: 86400 })
-    res.redirect(200, './');
+    res.redirect(301, '/');
 })
 
 /**

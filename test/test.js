@@ -9,7 +9,7 @@ let assert = require('assert');
 describe('Login', function () {
     describe('Login', function () {
         let cookie;
-        it('Al primo acceso i cookie login è impostato su false', function () {
+        it('Al primo acceso i cookie login impostato su false', function () {
             const options = {
                 hostname: 'localhost',
                 port: 8080,
