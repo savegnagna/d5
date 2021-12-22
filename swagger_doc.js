@@ -78,12 +78,12 @@
  *            properties:
  *              expire:
  *                type: string
- *                description: asd
+ *                description: Data di scadenza del coupone
  *              amount:
  *                type: number
- *                description: asd
+ *                description: sconto che aplicera al pagamento
  *              code:
  *                type: number
- *                description: asd
+ *                description: numero identificativo riutilizabile del cupone
  */
 
