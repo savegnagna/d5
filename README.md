@@ -1,6 +1,6 @@
-# For testing purpose
+# To start the application
 1. Install required packages, using npm install, inside the extracted folder
-2. Run the server with npm run run
+2. Run the server with *npm start*
 3. The server will run on the *port __3200__* using the internal loopback (*localhost*)
 4. To log in use the
     * user
@@ -10,27 +10,6 @@
       * user: driver@gmail.com
       * pass: pass 
 
-# Structure
-* public
-  * coupon.html
-    * *Page for showing the coupon of the user*
-  * couponloader.js
-    * *With this scipt the browser execute a fetch request for the data of the user*
-  * homeautista.html
-    * *The home page of the driver*
-  * homecliente.html
-    * *The home page of the user*
-  * index.html
-    * *Login page of the application*
-  * noleggio.html
-    * *Page for renting scooter and bicycle*
-  * registrazione.html
-    * *Registrescion page for user (the driver have to register in a second step __not implemented__.)*
-  * registrazione.js
-    * *Send a post requesto to the server with the data of the user*
-  * sidebar.js
-    * *Sidebar handle __the name say everything__*
-  * styles.css
-    * *The syle of the all web paga*
-  * velocipedimap.js
-    * *Handle the google map api front side doesn't send any request to the server*
+# To test the application
+(After installing the packages)
+1. Type in the terminal *npm test*
