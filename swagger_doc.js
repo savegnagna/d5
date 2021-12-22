@@ -87,12 +87,3 @@
  *                description: asd
  */
 
-
-
-/**
- * @swagger
- * tags:
- *   name: Login
- *   description: Login api
- */
-
