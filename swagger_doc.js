@@ -70,7 +70,7 @@
  *      properties:
  *        email:
  *          type: string
- *          description: asd
+ *          description: Email del utente
  *        coupons:
  *          type: array
  *          items:
@@ -78,12 +78,12 @@
  *            properties:
  *              expire:
  *                type: string
- *                description: asd
+ *                description: Data di scadenza del coupone
  *              amount:
  *                type: number
- *                description: asd
+ *                description: Sconto che applicato al pagamento
  *              code:
  *                type: number
- *                description: asd
+ *                description: Numero identificativo riutilizabile del cupone
  */
 
