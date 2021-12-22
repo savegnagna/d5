@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 exports.app = app;
 
-const port = 8080;
+const port = 3200;
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
@@ -34,7 +34,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:8080"
+                url: "http://localhost:3200"
             }
         ],
     },

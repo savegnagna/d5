@@ -1,7 +1,7 @@
 # For testing purpose
 1. Install required packages, using npm install, inside the extracted folder
 2. Run the server with npm run run
-3. The server will run on the *port __8080__* using the internal loopback (*localhost*)
+3. The server will run on the *port __3200__* using the internal loopback (*localhost*)
 4. To log in use the
     * user
       * user: user@gmail.com
@@ -26,7 +26,7 @@
     * *Page for renting scooter and bicycle*
   * registrazione.html
     * *Registrescion page for user (the driver have to register in a second step __not implemented__.)*
-  * registrescion.js
+  * registrazione.js
     * *Send a post requesto to the server with the data of the user*
   * sidebar.js
     * *Sidebar handle __the name say everything__*
